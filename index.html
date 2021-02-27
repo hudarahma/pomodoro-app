@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
+  <title>Pomodoro app</title>
+</head>
+<body>
+
+  <div id="wrapper">
+    <h2 class="center title">Pomodoro</h2>
+    <nav class="center">
+      <span id='pomodoro'>pomodoro</span>
+      <span id="short-break">short break</span>
+      <span id="long-break">long break</span>
+    </nav>
+    <section class="center" id="timer">
+     <div id="outer-circle">
+       <div id="inner-circle">
+
+         <svg id="ring" class="center">
+           <!-- circumference = radius * 2 * PI
+ -->
+           <circle r='163' cx='50%' cy='50%'></circle>  
+         
+         </svg>
+        <div class="time">17:59</div>
+        <div class="pause">Pause</div>
+       </div>
+
+     </div>
+    </section>
+    <section class="center" id="settings">
+      <img src="/assets/icon-settings.svg" alt="settings">
+    </section>
+  </div>
+ 
+
+  <script src="/js/index.js"></script>
+</body>
+</html>
