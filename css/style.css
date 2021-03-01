@@ -15,11 +15,25 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Kumbh Sans', 'sans-serif';
+    color: var(--light-blue)
 }
 
 body {
     background-color: var(--dark-blue);
 
+}
+
+h1{
+    font-weight: bold;
+    font-size: 100px;
+    letter-spacing: -5px;
+}
+h3 {
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 15px;
+    text-transform: uppercase;
 }
 
 .title {
@@ -45,40 +59,45 @@ body {
 }
 
 nav {
-    width: 450px;
+    width: 373px;
     height: 63px;
     background-color: var(--darker-blue);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border-radius: 31.5px;
+    border-radius: 50px;
+    z-index: 10;
 }
 
-#wrapper nav span {
-    border-radius: 26.5px;
-    /* border: 1px solid white; */
-    color: var(--light-blue);
+
+
+nav > ul {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around; 
+    list-style-type: none;
+    height: 100%;
+}
+
+nav > ul > li {
     opacity: 0.4;
-    font-size: 14px;
-    font-weight: bold;
-    width: 120px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    /* background: var(--perpule); */
+    transition: opacity 10ms ease-out;
 }
 
+#bgindicator {
+    border-radius: 50px;
+    height: 48px;
+    width: calc(95% / 3);
+    margin-top: -55px;
+    background-color: var(--orange);
+    transition: margin-left 300ms ease-out ;
+}
 
-
-#wrapper nav span:active{
+/* #wrapper nav span:active{
     background: var(--perpule);
     opacity: 1;
-}
-#wrapper nav span:hover{
+} */
+/* #wrapper nav span:hover{
     background: #ae69c7 ;
-}
+} */
 
 /* #timer {
     width: 373px;
@@ -87,6 +106,8 @@ nav {
 } */
 
 #outer-circle {
+    position: relative;
+    margin-top: 45px;
     display: flex;
     width: 410px;
     height: 410px;
@@ -103,37 +124,7 @@ nav {
    border-radius: 50%;
    background-color: var(--darker-blue);
 
-}
-
-.time {
-    position: absolute;
-    height: 101px;
-    width: 350px;
-    top: 470px;
-    font-weight: bold;
-    font-size: 80px;
-    line-height: 101px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-}
-
-.pause {
-    position: absolute;
-    width: 375px;
-    height: 16px;
-    top: 600px;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 16px;
-    letter-spacing: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-}
+}   
 
 #ring {
     margin: auto;
@@ -146,17 +137,34 @@ nav {
     fill: transparent;
     stroke: var(--perpule);
     stroke-width: 10;
-    stroke-dasharray: 1024, 1024;
-    stroke-dashoffset: 200;
-    stroke-linecap: round;
+    stroke-dasharray: 1024 1024;
+    stroke-dashoffset: 1024;
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
+    transition: stroke-dashoffset 0.2s ease-out;
+    stroke-linecap: round;
+   
 }
 
 #ring circle:focus{
     outline: none;
 }
 
+#textcontainer {
+    position: absolute;
+    height: 410px;
+    width: 410px;
+    color: var(--white);
+}
+#time {
+    text-align: center;
+    margin-top: 160px;
+}
+
+#action {
+    text-align: center;
+    cursor: pointer;
+}
 #settings{
     width: 373px;
     height: 63px;
@@ -177,4 +185,19 @@ nav {
 
 .center {
     margin: 0 auto;
+}
+
+.body1 {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.active {
+    color: var(--darker-blue);
+    opacity: 1;
+}
+.pointer {
+    user-select: none;
+    cursor: pointer;
 }
