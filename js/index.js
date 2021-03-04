@@ -4,8 +4,8 @@ class Timer {
         this.circle = document.querySelector('#ring > circle')
         this.clock = document.getElementById('time');
         this.actionElement = document.getElementById('action');
-        this.timer = 5;
-        this.text = this.timer <= 9 ? "0" + this.timer : this.timer;
+        this.timer = 25;
+        this.text = `${this.timer <= 9 ? "0" + this.timer : this.timer}`;
         
     }
 
@@ -13,18 +13,30 @@ class Timer {
     // 1. get type
     // 2. set timer
     // 3. reset
+   
 
     // setting
     // 1. object
 
-    reset() {
+    reset(typ = 'pomodoro') {
         // stop the timer
         // text reset
          // timer reset
         // Action to reset
         this.stop();
-        this.timer = 5;
-        this.text = this.timer <= 9 ? "0" + this.timer : this.timer;
+        switch (typ) {
+            case 'short-break':
+                this.timer = 5;
+                break;
+            case 'long-break':
+                this.timer = 15;
+                break;
+            default:
+                this.timer = 25;
+                break;
+        }
+        
+        this.text = `${this.timer <= 9 ? "0" + this.timer : this.timer}`;
         this.actionElement.innerText = 'start';
         this.clock.innerText = this.text + ':00';
         this.circle.style.strokeDashoffset = 1024;
@@ -33,8 +45,8 @@ class Timer {
 
     start() {
 
-        function format(timeFormat) {
-            return timeFormat < 10 ? '0'+ timeFormat : timeFormat;
+        const format = (timeFormat) =>{
+            return `${timeFormat < 10 ? '0'+ timeFormat : timeFormat}`;
         }
         this.clock.innerText = `${this.text}:00`;
         this.circle.style.strokeDashoffset = 1024;
@@ -57,20 +69,21 @@ class Timer {
             console.log('min:', minutesText);
             console.log('sec:', secondsText);
 
-            this.clock.innerText = minutesText + ':' + secondsText;
+            this.clock.innerText =`${ minutesText} : ${secondsText}`;
             const percent = ((time % startTime) / startTime) ;
-            const offset = percent * 1024;  //circumfrence is 1024
-            // console.log(this.circle.style);
+            const offset = percent * 1024;  //circumference --> raduis * 2 * PI --> circumfrence is 1024 , console.log(this.circle.style)--> check all the styles properties;
+            
             this.circle.style.strokeDashoffset = offset;
             console.log('percent:', percent);
-            if (--time <= 0) {
-                this.timer = 0;
-                clearInterval(this.interval) // clearing the interval needs its own object
-            }
+            // if (--time <= 0) {
+            //     this.timer = 0;
+            //     clearInterval(this.interval) // clearing the interval needs its own object
+            // }
+            (--time <=0 ? this.timer = 0 && clearInterval(this.interval): '') 
         }, 1000);
         // change clock text
         // Action text change
-        this.actionElement.innerText = 'stop'
+        this.actionElement.innerText = 'stop';
 
 
     }
@@ -90,7 +103,7 @@ class Timer {
 // -----------------------------
 
 const countDownTimer = new Timer();
-countDownTimer.reset();
+countDownTimer.reset('pomodoro');  //--->Q: why not working with the Variable Name as the default parameter???
 
 function action(str) {
     switch (str.toLowerCase()) {
@@ -103,7 +116,6 @@ function action(str) {
     }
 }
 
-// circumference --> raduis * 2 * PI
 
 // -------------------------------
 // Nav functions
@@ -111,17 +123,28 @@ function action(str) {
 
 const navLinks = document.querySelectorAll('nav > ul > li');
 const navBg = document.getElementById('bgindicator');
-console.log(navBg);
-for (const i in navLinks){
-    navLinks.item(i).addEventListener('click', (ev) =>{
-        navLinks.forEach((link)=> link.classList.remove('active'))
-        // for(const link of navLinks) {
-        //     link.classList.remove('active');
-        // }
+console.log(navLinks);
+
+navLinks.forEach((navLink,i) => {
+    navLink.addEventListener('click', (ev) => {
+        navLinks.forEach(link => {link.classList.remove('active')})
         navBg.style.marginLeft= `calc(calc(100%/3) * ${i})`;
         ev.target.classList.add('active');
+
+        console.log(navLink.id);
+
+        switch (navLink.id) {     
+            case 'short-break':
+                countDownTimer.reset('short-break');
+                break;
+            case 'long-break':
+                countDownTimer.reset('long-break');
+                break;
+            default:
+                countDownTimer.reset('pomodoro');
+                break;
+        }
     })
    
-
-}
+})
 
