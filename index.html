@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Space+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&display=swap" rel="stylesheet">
   <title>Pomodoro app</title>
 </head>
 <body>
@@ -50,56 +50,128 @@
 
 
     <!-- Creating Form  -->
+
+    <section id="settings-container">
+      <div id="formouter">
+        <form >
+          <div id="settings-header">
+            <h2>Settings</h2>
+            <img src="/assets/icon-close.svg" 
+            class="pointer" 
+            height="14px"
+            width="14px" 
+            alt="close"
+            id="close"
+            />
+          </div>
+          <hr />
+          <div id="settings-time">
+            <h4 >TIME (MINUTES)</h4>
+            <!-- shortbreak Input -->
+            <div class="inputs">
+              <!-- pomodoro Input -->
+              <div class="input">
+                <label for="pomodoro" class="body2">Pomodoro</label>
+                <div class="input-number">
+                  <input type="number" 
+                  id="pomodoro-input" 
+                  value="25" 
+                  min="0">
+                
+                <!-- input Buttons -->
+                  <div class="input-buttons">
+                    <button class="up-arrow" onclick="inc('pomodoro-input')">
+                      <img src="/assets/icon-arrow-up.svg" alt="">
+                    </button>
+                    <button class="down-arrow" onclick="dec('pomodoro-input')">
+                      <img src="/assets/icon-arrow-down.svg" alt="">
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- short-rest Input -->
+              <div class="input">
+                <label for="short-rest" class="body2">short rest</label>
+                <div class="input-number">
+                  <input type="number" 
+                  id="short-rest-input" 
+                  value="5" 
+                  min="0">
+                
+                <!-- input Buttons -->
+                  <div class="input-buttons">
+                    <button class="up-arrow" onclick="inc('short-rest-input')">
+                      <img src="/assets/icon-arrow-up.svg" alt="">
+                    </button>
+                    <button class="down-arrow" onclick="dec('short-rest-input')">
+                      <img src="/assets/icon-arrow-down.svg" alt="">
+                    </button>
+                  </div>
+                </div>
+              </div>
+               <!-- long-rest Input -->
+              <div class="input">
+                <label for="long-rest" class="body2">long rest</label>
+                <div class="input-number">
+                  <input type="number" 
+                  id="long-rest-input" 
+                  value="15" 
+                  min="0">
+                
+                <!-- input Buttons -->
+                  <div class="input-buttons">
+                    <button class="up-arrow" onclick="inc('long-rest-input')">
+                      <img src="/assets/icon-arrow-up.svg" alt="">
+                    </button>
+                    <button class="down-arrow" onclick="dec('long-rest-input')">
+                      <img src="/assets/icon-arrow-down.svg" alt="">
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+
+            <!-- Font Setting -->
+            <div class="fonts">
+              <h4>font</h4>
+              <div class="font-buttons">
+                <input id ='kumbh-sans' type="button" value="Aa"  />
+                <input id ='roboto-slab' type="button" value="Aa"  style="font-family: 'Roboto Slab';"  />
+                <input id ='space-mono' type="button" value="Aa"   style="font-family: 'Space Mono'; "/>
+              </div>
+              
+            </div>
+            <hr />
+            <!-- color Setting -->
+            <div class="colors">
+              <h4>colors</h4>
+              <div class="color-buttons">
+                <div class="container"  >
+                  <input id='orange'  type="button" style="background-color: #F87070;" />
+                 
+                </div>
+
+                <div class="container" >
+                  <input id='light-green' type="button" style="background-color: #70F3F8";/>
+                </div>
+
+                <div class="container" >
+                  <input id='perpule'  type ="button" style="background-color: #D881F8" />
+                </div>
+                
+              </div>
+            </div>
+            <button id='submit-btn' type="submit">Apply</button>
+          </div>
+
+
+        </form>
+      </div>
+      <div id="#settings-overlay"></div>
+    </section>
   </div>
  
-  <form id="setup">
-    <div class="title-settings">
-      <h2>Settings</h2><i class="fas fa-times"></i>
-    </div>
-    
-    <div class="time-types">
-      
-      <div class="wrap-container">
-        <h4 >TIME (MINUTES)</h4>
-        <div class="wrap-types">
-          <div class="times-opts">
-            <label for="">pomodoro</label><br>
-            <input type="number" value="25" min="0" max="25" />
-          </div>
-          <div class="times-opts">
-            <label for="">short break</label><br>
-            <input type="number" value="5" min="0" max="5" />
-          </div>
-          <div class="times-opts">
-            <label for="">long break</label><br>
-            <input type="number" value="15" min="0" max="15" />
-          </div>
-        </div>
-      
-      </div>
-      
-    </div>
-    
-    <div class="font-types">
-      <h4>font</h4>
-      <div class="font-buttons">
-        <input type="button" value="Aa" style="background-color: black;"/>
-        <input type="button" value="Aa" style="font-family: 'Roboto Slab'; color: #1E213F; opacity: 0.73;"/>
-        <input type="button" value="Aa" style="font-family: 'Space Mono';  color: #1E213F; opacity: 0.73"/>
-      </div>
-      
-    </div>
-
-    <div class="colors">
-      <h4>colors</h4>
-      <div class="colors-type">
-        <input type="button" style="background-color: #F87070;"/>
-        <input type="button" style="background-color: #70F3F8;" />
-        <input type="button" style="background-color: #D881F8"/>
-      </div>
-    </div>
-    <button id='submit-btn' type="submit">Apply</button>
-  </form>
   <script src="/js/index.js"></script>
   <!-- <script src="/js/circumference.js"></script> -->
 </body>
