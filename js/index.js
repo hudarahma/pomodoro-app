@@ -223,72 +223,171 @@ const dec = (input) => {
 }
 
 
-// get the inputs and declear them
-const inputTime =  document.querySelectorAll('.input > .input-number > input');
-inputTime.forEach(el => {
-    console.log(el.id, 'im the id');
-    console.log(parseInt(el.value), 'input');
-    switch(el.id) {
-        case 'pomodoro-input' :
-            countDownTimer.reset('pomodoro');
-            break;
-        case 'short-rest-input':
-            countDownTimer.reset('short-rest' );
-            break;
-        case 'long-rest-input':
-            countDownTimer.reset('long-rest');
-            break;
-        default :
-            countDownTimer.reset('pomodoro');
-            break;
-    }
-    console.log(this.timer, 'this.timer')
+const submitBtn = document.getElementById('submit-btn');
+const inputFont = document.querySelectorAll('.font-buttons > input[type=button]');
+const inputColor = document.querySelectorAll('.color-buttons > .container > button');
+console.log(inputFont)
+console.log(inputColor)
+
+const imgs = document.querySelectorAll('.container > button > img');
+
+// *****************************************************
+inputFont.forEach(font => {
+    font.addEventListener('click', (ev) => {
+       
+        inputFont.forEach(font => font.classList.remove('active-button'));
+        ev.target.classList.add('active-button');
         
-})
-
-
-const inputFont = document.querySelectorAll('.font-buttons > input');
-inputFont.forEach((font, i) => {
-    font.addEventListener('click', ()=>{
         switch(font.id) {
             case 'kumbh-sans':
-                document.body.style.fontFamily =  "Kumbh Sans" ,"sans-serif";
+                settingsContainer.style.fontFamily =  "Kumbh Sans" ,"sans-serif";
+            
                 break;
             case 'roboto-slab':
-                document.body.style.fontFamily = "Roboto Slab", "serif";
+                settingsContainer.style.fontFamily = "Roboto Slab", "serif";
+           
                 break;
             case 'space-mono':
-                document.body.style.fontFamily = "Space Mono", "monospace";
+                settingsContainer.style.fontFamily = "Space Mono", "monospace";
+       
                 break;
             default:
-                document.body.style.fontFamily =  'Kumbh Sans' ,'sans-serif';
+                settingsContainer.style.fontFamily =  'Kumbh Sans' ,'sans-serif';
+              
+                break;
+            }   
+    })
+})
+// **********************************************
+imgs.forEach(img => {
+    img.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        imgs.forEach(img => {
+            img.classList.remove('active-checkmark')
+            img.classList.add('hide-el');
+        })
+        ev.target.classList.add('active-checkmark');
+        ev.target.classList.remove('hide-el');
+        
+    })
+})
+
+inputColor.forEach((color) => {
+    color.addEventListener('click', (ev)=> {
+        ev.preventDefault();
+        switch(color.id) {
+            case 'orange':
+               submitBtn.style.backgroundColor = '#F87070';
+                break;
+            case 'light-green':
+                submitBtn.style.backgroundColor = '#70F3F8';
+                break;
+            case 'perpule':
+                submitBtn.style.backgroundColor = '#D881F8';
+                break;
+            default:
+                submitBtn.style.backgroundColor = '#F87070';
+                break;
+        }   
+    })
+})  
+
+
+
+// *************************Apply Button*****************************************
+
+
+submitBtn.addEventListener('click', (ev) => {
+    ev.preventDefault();
+
+    // ***************************************************************************
+    const inputTime =  document.querySelectorAll('.input > .input-number > input');
+    inputTime.forEach(el => {
+        console.log(el.id, 'im the id');
+        console.log(parseInt(el.value), 'input');
+        switch(el.id) {
+            case 'pomodoro-input' :
+                countDownTimer.reset('pomodoro');
+                break;
+            case 'short-rest-input':
+                countDownTimer.reset('short-rest' );
+                break;
+            case 'long-rest-input':
+                countDownTimer.reset('long-rest');
+                break;
+            default :
+                countDownTimer.reset('pomodoro');
                 break;
         }
+    }) 
+    // ***********************************************************************
+  
+    inputFont.forEach((font) => {
+        
+        if (font.classList.contains('active-button')) {
+            switch(font.id) {
+                case 'kumbh-sans':
+                    document.body.style.fontFamily =  "Kumbh Sans" ,"sans-serif";
+                
+                    break;
+                case 'roboto-slab':
+                    document.body.style.fontFamily = "Roboto Slab", "serif";
+               
+                    break;
+                case 'space-mono':
+                    document.body.style.fontFamily = "Space Mono", "monospace";
+           
+                    break;
+                default:
+                    document.body.style.fontFamily =  'Kumbh Sans' ,'sans-serif';
+                  
+                    break;
+            }   
+            
+        }
+        
     })
+
+    // ***************************************************************************
+    
+   
+    imgs.forEach(img => {
+        if (img.classList.contains('active-checkmark')) {
+            switch(img.id) {
+            
+                case 'orange-checked':
+                    countDownTimer.circle.style.stroke = '#F87070';
+                    navBg.style.backgroundColor = '#F87070';
+                    submitBtn.style.backgroundColor = '#F87070';
+                
+                    break;
+                case 'green-checked':
+                    countDownTimer.circle.style.stroke = '#70F3F8';
+                    navBg.style.backgroundColor = '#70F3F8';
+                    submitBtn.style.backgroundColor = '#70F3F8';
+                    break;
+                case 'purple-checked':
+                    countDownTimer.circle.style.stroke = '#D881F8';
+                    navBg.style.backgroundColor = '#D881F8';
+                    submitBtn.style.backgroundColor = '#D881F8'
+                    break;
+                default:
+                    countDownTimer.circle.style.stroke = '#F87070';
+                    navBg.style.backgroundColor = '#F87070';
+                    submitBtn.style.backgroundColor = '#F87070';
+                    break;
+            }   
+        }
+    })
+    
+        
+    
+
+    settingsContainer.style.opacity = 0;
+    settingsContainer.style.visibility = 'hidden'
 })
 
 
-const inputColor = document.querySelectorAll('.container > input');
-inputColor.forEach((color, i) => {
-    color.addEventListener('click', ()=>{
-      
-    })
-})
-
-console.log(inputFont);
-console.log(inputColor);
-
-// let newObj = {
-//     time : inputTime(),
-
-// }
-
-const submitBtn = document.getElementById('submit-btn');
-// submitBtn.addEventListener('click', () => {
-//     countDownTimer.setting()
-// })
-
-// console.log(document.querySelectorAll(" input[type = 'button']"), 'fonts');
 
 
 

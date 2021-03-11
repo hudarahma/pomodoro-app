@@ -228,6 +228,16 @@ nav > ul > li {
     opacity: 1;
     
 }
+
+.active-button {
+    background-color: var(--dark-blue);
+    color: var(--white);
+}
+
+.active-checkmark {
+    opacity: 1;
+}
+
 .pointer {
     user-select: none;
     cursor: pointer;
@@ -390,15 +400,15 @@ hr {
     justify-content: space-around;
 }
 
-.font-buttons input[type='button'], .color-buttons input[type='button'] {
+.font-buttons input[type='button'], .color-buttons button {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     border: none;
     cursor: pointer;
-    color: var(--darker-blue);
+    /* color: var(--darker-blue); */
 }
-.font-buttons input[type='button'] , .color-buttons input[type='button']:focus {
+.font-buttons input[type='button'] , .color-buttons button:focus {
     outline: none;
 }
 
@@ -419,7 +429,13 @@ hr {
     
 }
 
+.hidden {
+    visibility: hidden;
+}
 
+.hide-el {
+    opacity: 0;
+}
 /********** Button submit *********/
 #submit-btn {
     left: 201px;
@@ -437,6 +453,10 @@ hr {
     text-align: center;
     color: var(--white);
 }
+#submit-btn:focus {
+    outline: none;
+}
+
 #submit-btn:hover {
     background-color: #ee5858;
 }
